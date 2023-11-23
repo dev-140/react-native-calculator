@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react'
+import { SafeAreaView } from 'react-native'
+import { PaperProvider } from 'react-native-paper'
+import Heading from './components/heading/App'
+import Screen from './components/screen/App'
+import Buttons from './components/buttons/App'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [displayText, setDisplayText] = useState('')
+    const [displayTotal, setDisplayTotal] = useState('')
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    return (
+        <PaperProvider>
+            <Heading />
+            <SafeAreaView>
+                <Screen displayText={displayText} displayTotal={displayTotal}/>
+                <Buttons
+                    setDisplayText={setDisplayText}
+                    setDisplayTotal={setDisplayTotal}
+                />
+            </SafeAreaView>
+        </PaperProvider>
+    )
+}
